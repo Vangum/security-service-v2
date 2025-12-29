@@ -6,7 +6,20 @@ export type AppPageProps<T extends Record<string, unknown> = Record<string, unkn
     name: string;
     quote: { message: string; author: string };
     auth: Auth;
+    sidebarOpen: boolean;
 };
+
+export interface BreadcrumbItem {
+    title: string;
+    href: string;
+}
+
+export interface NavItem {
+    title: string;
+    href: NonNullable<InertiaLinkProps['href']>;
+    icon?: LucideIcon;
+    isActive?: boolean;
+}
 
 export interface User {
     id: number;
@@ -17,3 +30,5 @@ export interface User {
     created_at: string;
     updated_at: string;
 }
+
+export type BreadcrumbItemType = BreadcrumbItem;
