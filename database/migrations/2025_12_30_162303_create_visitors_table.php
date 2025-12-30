@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->string('full_name', 150);
-            $table->foreignId('department_id')->constrained()->restrictOnDelete();
+            $table->foreignId('department_id')->constrained('departments')->restrictOnDelete();
             $table->date('birth_date');
             $table->string('position', 150);
-            $table->string('phone')->unique();
+            $table->string('phone');
             $table->timestamp('entry_datetime');
             $table->timestamp('exit_datetime');
             $table->text('remarks')->nullable();

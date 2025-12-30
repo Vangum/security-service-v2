@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('visitor_id')->constrained()->restrictOnDelete();
 
             $table->enum('type', ['passport', 'license', 'other'])->default('passport');
@@ -35,6 +36,9 @@ return new class extends Migration
             $table->string('other_issued_by', 250)->nullable();
 
             $table->timestamps();
+
+            $table->softDeletes();
+            $table->foreignId('deleted_by')->nullable()->constrained('users');
         });
     }
 

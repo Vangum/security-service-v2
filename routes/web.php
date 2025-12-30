@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -17,10 +18,13 @@ Route::controller(VisitorController::class)->group(function () {
     Route::delete('/visitors/{visitor}', 'destroy')->name('visitorsDestroy');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard', []);
+Route::controller(DepartmentController::class)->group(function () {
+    Route::get('departments', 'index')->name('departmentsIndex');
+    Route::post('departments', 'store')->name('departmentsStore');
+    Route::put('departments/{department}', 'update')->name('departmentsUpdate');
+    Route::delete('departments/{department}', 'destroy')->name('departmentsDestroy');
 });
 
-Route::get('/departments', function () {
-    return Inertia::render('Departments', []);
+Route::get('/dashboard', function () {
+    return Inertia::render('Dashboard', []);
 });
