@@ -281,7 +281,7 @@ const changePerPage = (value: string | number) => {
                     </div>
                     
                     <!-- Пагинация -->
-                    <div class="flex justify-between items-center flex-shrink-0 pt-2 border-t">
+                    <div class="flex justify-between items-center flex-shrink-0">
                         <div class="flex items-center gap-2">
                             <span class="text-sm text-gray-600 dark:text-white">Записей на странице:</span>
                             <Select :disabled="isLoading" :model-value="String(perPage)" @update:model-value="value => changePerPage(value as string | number)">
