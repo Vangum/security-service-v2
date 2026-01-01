@@ -1,13 +1,20 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\DepartmentController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', []);
-})->name('home');
+    return Redirect::route('visitorsIndex');
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'index')->name('usersIndex');
+    Route::post('/login', 'store')->name('usersStore');
+});
 
 Route::controller(VisitorController::class)->group(function () {
     Route::get('/visitors', 'index')->name('visitorsIndex');
