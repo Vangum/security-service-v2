@@ -158,10 +158,10 @@ const changePerPage = (value: string | number) => {
         
         <div class="flex h-full flex-col gap-4 p-4">
             
-            <!-- Пусто, нет справочников -->
-            <div v-if="departments.total === 0 && !searchQuery && !isLoading" class="text-center py-8">
-                <p class="text-muted-foreground mb-4">Справочников пока нет</p>
-                <Button @click="openCreateDialog">Добавить справочник</Button>
+            <div v-if="departments.total === 0 && !searchQuery && !isLoading" class="text-center ">
+                <span>Справочников пока нет.&nbsp;
+                    <Button @click="openCreateDialog" variant="link" class="cursor-pointer p-0 m-0 font-normal text-md underline">Добавить</Button>
+                </span>
             </div>
             
             <!-- Загрузка -->

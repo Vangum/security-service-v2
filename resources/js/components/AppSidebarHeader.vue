@@ -2,6 +2,10 @@
 import {SidebarTrigger} from "@/components/ui/sidebar";
 import {BreadcrumbItemType} from "@/types";
 import Breadcrumbs from "@/components/Breadcrumbs.vue";
+import {router, usePage} from "@inertiajs/vue3";
+import {Button} from "@/components/ui/button";
+import {LogOut} from 'lucide-vue-next';
+import {logout} from "@/routes";
 
 withDefaults(
     defineProps<{
@@ -11,6 +15,9 @@ withDefaults(
         breadcrumbs: () => [],
     },
 );
+
+const page = usePage();
+const user = page.props.auth.user;
 </script>
 
 <template>
@@ -21,8 +28,11 @@ withDefaults(
                 <Breadcrumbs :breadcrumbs="breadcrumbs" />
             </template>
         </div>
-        <div class="ml-auto">
-            Имя пользователя
+        <div class="ml-auto flex items-center gap-4">
+            {{ user.name }}
+            <Button @click.prevent="router.post(logout().url)" variant="outline" size="icon-sm">
+                <LogOut />
+            </Button>
         </div>
     </header>
 </template>

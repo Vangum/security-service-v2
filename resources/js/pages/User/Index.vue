@@ -5,6 +5,7 @@ import {Spinner} from '@/components/ui/spinner';
 import AuthBase from '@/layouts/AuthLayout.vue';
 import {Head, useForm} from '@inertiajs/vue3';
 import {Field, FieldError, FieldGroup, FieldLabel, FieldSet} from "@/components/ui/field";
+import {loginAction} from "@/routes";
 
 defineProps<{
     status?: string;
@@ -23,7 +24,7 @@ const form = useForm({
     <AuthBase title="Войдите в свою учетную запись" description="Логин – admin, пароль – password">
         <Head title="Вход" />
         
-        <form>
+        <form @submit.prevent="form.post(loginAction().url)">
             <FieldGroup>
                 <FieldSet>
                     <FieldGroup>
